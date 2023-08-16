@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
         - name: posts
-          image: yhunlu/posts:0.0.1
+          image: yhunlu/posts:latest
