@@ -1,0 +1,57 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+build:
+  artifacts:
+    - image: yhunlu/client
+      context: client
+      sync:
+        manual:
+          - src: src/**/*.js
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: yhunlu/comments
+      context: comments
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: yhunlu/event-bus
+      context: event-bus
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: yhunlu/moderation
+      context: moderation
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: yhunlu/posts
+      context: posts
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: yhunlu/query
+      context: query
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+  local:
+    push: false
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
